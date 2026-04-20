@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ResepMenu Luxe | Digital Recipe Concierge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet"/>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'luxe-black': '#121212',
+          'luxe-charcoal': '#1A1A1A',
+          'luxe-gold': '#D4AF37',
+          'luxe-cream': '#F5F5F0',
+          'luxe-gray': '#8E8E8E',
+        },
+        fontFamily: {
+          serif: ['Playfair Display', 'serif'],
+          sans: ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  body {
+    background-color: #121212;
+    color: #F5F5F0;
+    font-family: "Inter", sans-serif;
+  }
+  .gold-foil-border {
+    position: relative;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+  }
+  .gold-foil-border::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border: 1px solid transparent;
+    background: linear-gradient(135deg, #D4AF37 0%, #F5E396 50%, #D4AF37 100%) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .glass-card {
+    background: rgba(26, 26, 26, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+  .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+  .custom-scrollbar::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
+  .text-gold-gradient {
+    background: linear-gradient(to bottom right, #D4AF37, #F5E396);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  /* Markdown Styles */
+  .message-content h1, .message-content h2, .message-content h3, .message-content h4, .message-content h5, .message-content h6 {
+    margin: 8px 0 6px 0;
+    font-weight: 600;
+    color: inherit;
+    font-family: 'Playfair Display', serif;
+  }
+  .message-content h1 { font-size: 1.2rem; }
+  .message-content h2 { font-size: 1.1rem; }
+  .message-content h3 { font-size: 1rem; }
+  .message-content h4, .message-content h5, .message-content h6 { font-size: 0.95rem; }
+  .message-content p { margin: 6px 0; }
+  .message-content ul, .message-content ol { margin: 6px 0; padding-left: 20px; }
+  .message-content li { margin: 3px 0; }
+  .message-content table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 8px 0;
+    font-size: 0.85rem;
+  }
+  .message-content table thead {
+    background: rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+  }
+  .message-content table th, .message-content table td {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 8px;
+    text-align: left;
+  }
+  .message-content table tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .message-content code {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    font-family: monospace;
+  }
+  .message-content pre {
+    background: rgba(0, 0, 0, 0.3);
+    color: #f3f4f6;
+    padding: 10px;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 8px 0;
+  }
+  .message-content pre code { background: none; padding: 0; }
+  .message-content blockquote {
+    border-left: 3px solid #D4AF37;
+    padding-left: 10px;
+    margin: 6px 0;
+    opacity: 0.8;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in { animation: fadeIn 0.4s ease-out; }
+  .filter-chip { transition: all 0.2s; }
+  .filter-chip.active { background: rgba(212, 175, 55, 0.15); border-color: #D4AF37; color: #D4AF37; }
+  .filter-chip:not(.active):hover { border-color: rgba(212, 175, 55, 0.5); color: #F5F5F0; }
+  /* Typing cursor */
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  .typing-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: #D4AF37;
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: blink 0.7s infinite;
+  }
+
+  .search-overlay { transition: opacity 0.3s, visibility 0.3s; }
+  .search-overlay.hidden { opacity: 0; visibility: hidden; }
+  .search-overlay:not(.hidden) { opacity: 1; visibility: visible; }
+
+  /* Loading dots animation */
+  @keyframes dots {
+    0%, 20% { content: ''; }
+    40% { content: '.'; }
+    60% { content: '..'; }
+    80%, 100% { content: '...'; }
+  }
+  .loading-dots::after {
+    content: '';
+    animation: dots 1.5s infinite;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@2.4.0/dist/purify.min.js"></script>
+</head>
+<body class="h-screen overflow-hidden flex">
+
+<!-- Navigation Sidebar -->
+<aside class="w-20 lg:w-64 border-r border-white/5 flex flex-col items-center lg:items-start py-8 px-4 bg-luxe-black">
+  <div class="mb-12 px-2 flex items-center gap-3">
+    <div class="w-10 h-10 border border-luxe-gold flex items-center justify-center rotate-45">
+      <span class="material-symbols-outlined text-luxe-gold -rotate-45">restaurant_menu</span>
+    </div>
+    <span class="hidden lg:block font-serif text-xl tracking-widest text-luxe-gold">LUXE</span>
+  </div>
+  <nav class="flex-1 w-full space-y-6">
+    <a class="flex items-center gap-4 text-luxe-gold group px-2" href="#">
+      <span class="material-symbols-outlined text-2xl">home</span>
+      <span class="hidden lg:block font-light tracking-wide uppercase text-xs">Beranda</span>
+    </a>
+  </nav>
+  <div class="mt-auto w-full border-t border-white/5 pt-6 flex flex-col gap-4">
+    <button class="w-full bg-luxe-gold text-luxe-black py-3 px-4 text-[10px] uppercase tracking-widest font-bold hover:bg-white transition-colors flex items-center justify-center gap-2" id="reset-btn">
+      <span class="material-symbols-outlined text-sm">add</span>
+      <span class="hidden lg:inline">Percakapan Baru</span>
+    </button>
+    <button class="flex items-center gap-4 text-luxe-gray hover:text-white transition-colors px-2">
+      <span class="hidden lg:block font-light tracking-wide uppercase text-xs">Pengaturan</span>
+    </button>
+    <div class="flex items-center gap-3 px-2">
+      <div class="w-8 h-8 rounded-full bg-luxe-gold flex items-center justify-center">
+        <span class="material-symbols-outlined text-luxe-black text-sm">person</span>
+      </div>
+      <div class="hidden lg:block">
+        <p class="text-[10px] uppercase tracking-tighter text-luxe-gray">Gold Member</p>
+        <p class="text-xs font-medium">Admin</p>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-hidden bg-luxe-black">
+  <!-- Header -->
+  <header class="p-6 lg:px-10 flex justify-between items-center border-b border-white/5">
+    <div class="flex items-center gap-4">
+      <span class="material-symbols-outlined text-luxe-gold">restaurant</span>
+      <h2 class="text-xs font-medium uppercase tracking-[0.3em] text-luxe-gold">Chef's Table — Private Consultation</h2>
+    </div>
+    <div class="flex items-center gap-4">
+      <button class="flex items-center gap-3 px-4 py-2 border border-white/10 bg-luxe-charcoal hover:border-luxe-gold/50 transition-colors cursor-pointer" id="open-search-btn">
+        <span class="material-symbols-outlined text-luxe-gold text-sm">search</span>
+        <span class="text-sm text-luxe-gray font-light hidden md:inline">Cari resep...</span>
+        <kbd class="hidden md:inline text-[9px] text-luxe-gray border border-white/10 px-1.5 py-0.5 ml-4">/</kbd>
+      </button>
+      <div class="flex items-center gap-3">
+        <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+        <span class="text-[10px] uppercase tracking-widest text-luxe-gold">Concierge Online</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Chat Container -->
+  <div class="flex-1 overflow-y-auto custom-scrollbar p-8 lg:p-10" id="chat-body">
+    <div class="max-w-4xl mx-auto space-y-10">
+      <!-- Welcome Section -->
+      <div class="flex flex-col items-center text-center space-y-8 animate-fade-in pt-8" id="welcome-section">
+        <div class="relative group">
+          <div class="absolute -inset-2 bg-luxe-gold/20 rounded-full blur-xl opacity-30 group-hover:opacity-60 transition duration-1000"></div>
+          <div class="relative w-20 h-20 border border-luxe-gold flex items-center justify-center rotate-45 bg-luxe-black">
+            <span class="material-symbols-outlined text-4xl text-luxe-gold -rotate-45">restaurant_menu</span>
+          </div>
+        </div>
+        <div class="space-y-3">
+          <h3 class="text-4xl lg:text-5xl font-serif text-luxe-gold mb-2">Selamat Datang</h3>
+          <p class="text-luxe-gray font-light italic tracking-wide max-w-lg mx-auto leading-relaxed">
+            Saya <span class="text-gold-gradient font-medium not-italic">Chef AI</span> Anda. Tanyakan resep masakan Indonesia, bahan-bahan, atau minta rekomendasi menu harian. Dapur siap melayani Anda.
+          </p>
+        </div>
+        <div class="h-[1px] w-32 bg-gradient-to-r from-transparent via-luxe-gold/50 to-transparent"></div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="quick-actions-welcome">
+        <div class="glass-card gold-foil-border p-6 cursor-pointer hover:border-luxe-gold/50 transition-all duration-500 group quick-btn" data-preset="cari_resep">
+          <div class="flex justify-between items-start mb-4">
+            <span class="text-[10px] uppercase tracking-widest text-luxe-gray">Cari Resep</span>
+            <span class="material-symbols-outlined text-luxe-gold text-lg opacity-40 group-hover:opacity-100 transition-opacity">auto_awesome</span>
+          </div>
+          <h4 class="font-serif text-lg group-hover:text-luxe-gold transition-colors">Resep Favorit Indonesia</h4>
+          <div class="h-[1px] w-full bg-gradient-to-r from-luxe-gold/50 to-transparent my-3"></div>
+          <p class="text-sm text-luxe-gray font-light">Temukan resep-resep masakan Indonesia yang paling dicari.</p>
+        </div>
+        <div class="glass-card gold-foil-border p-6 cursor-pointer hover:border-luxe-gold/50 transition-all duration-500 group quick-btn" data-preset="lihat_bahan">
+          <div class="flex justify-between items-start mb-4">
+            <span class="text-[10px] uppercase tracking-widest text-luxe-gray">Bahan & Langkah</span>
+            <span class="material-symbols-outlined text-luxe-gold text-lg opacity-40 group-hover:opacity-100 transition-opacity">shopping_basket</span>
+          </div>
+          <h4 class="font-serif text-lg group-hover:text-luxe-gold transition-colors">Lihat Bahan Resep</h4>
+          <div class="h-[1px] w-full bg-gradient-to-r from-luxe-gold/50 to-transparent my-3"></div>
+          <p class="text-sm text-luxe-gray font-light">Cek bahan-bahan dan langkah memasak untuk resep tertentu.</p>
+        </div>
+        <div class="glass-card gold-foil-border p-6 cursor-pointer hover:border-luxe-gold/50 transition-all duration-500 group quick-btn" data-preset="cari_berdasarkan_bahan">
+          <div class="flex justify-between items-start mb-4">
+            <span class="text-[10px] uppercase tracking-widest text-luxe-gray">Filter Bahan</span>
+            <span class="material-symbols-outlined text-luxe-gold text-lg opacity-40 group-hover:opacity-100 transition-opacity">shopping_cart</span>
+          </div>
+          <h4 class="font-serif text-lg group-hover:text-luxe-gold transition-colors">Cari Berdasarkan Bahan</h4>
+          <div class="h-[1px] w-full bg-gradient-to-r from-luxe-gold/50 to-transparent my-3"></div>
+          <p class="text-sm text-luxe-gray font-light">Punya bahan tertentu? Temukan resep yang bisa Anda masak.</p>
+        </div>
+        <div class="glass-card gold-foil-border p-6 cursor-pointer hover:border-luxe-gold/50 transition-all duration-500 group quick-btn" data-preset="lihat_kategori">
+          <div class="flex justify-between items-start mb-4">
+            <span class="text-[10px] uppercase tracking-widest text-luxe-gray">Kategori</span>
+            <span class="material-symbols-outlined text-luxe-gold text-lg opacity-40 group-hover:opacity-100 transition-opacity">menu_book</span>
+          </div>
+          <h4 class="font-serif text-lg group-hover:text-luxe-gold transition-colors">Jelajahi Kategori Masakan</h4>
+          <div class="h-[1px] w-full bg-gradient-to-r from-luxe-gold/50 to-transparent my-3"></div>
+          <p class="text-sm text-luxe-gray font-light">Telusuri berbagai kategori dari rendang hingga soto nusantara.</p>
+        </div>
+        <div class="glass-card gold-foil-border p-6 cursor-pointer hover:border-luxe-gold/50 transition-all duration-500 group quick-btn" data-preset="rekomendasi_menu">
+          <div class="flex justify-between items-start mb-4">
+            <span class="text-[10px] uppercase tracking-widest text-luxe-gray">Rekomendasi</span>
+            <span class="material-symbols-outlined text-luxe-gold text-lg opacity-40 group-hover:opacity-100 transition-opacity">recommend</span>
+          </div>
+          <h4 class="font-serif text-lg group-hover:text-luxe-gold transition-colors">Menu Pilihan Hari Ini</h4>
+          <div class="h-[1px] w-full bg-gradient-to-r from-luxe-gold/50 to-transparent my-3"></div>
+          <p class="text-sm text-luxe-gray font-light">Rekomendasi menu spesial yang disesuaikan untuk Anda.</p>
+        </div>
+      </div>
+
+      <!-- Chat Messages will be appended here -->
+    </div>
+  </div>
+
+  <!-- Input Bar -->
+  <div class="p-4 bg-luxe-charcoal border-t border-white/5">
+    <div class="max-w-4xl mx-auto relative">
+      <input class="w-full bg-luxe-black border border-white/10 py-4 px-6 pr-24 text-sm focus:ring-1 focus:ring-luxe-gold focus:border-luxe-gold transition-all font-light placeholder:text-luxe-gray placeholder:italic" id="msg-input" placeholder="Tanyakan pada Chef..." type="text"/>
+      <div class="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2">
+        <button class="text-luxe-gray hover:text-luxe-gold transition-colors p-2">
+        </button>
+        <button class="bg-luxe-gold text-luxe-black w-10 h-10 flex items-center justify-center hover:bg-white transition-colors" id="send-btn">
+          <span class="material-symbols-outlined">send</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Search Overlay -->
+<div class="search-overlay hidden fixed inset-0 z-50 flex items-start justify-center pt-[10vh]" id="search-overlay">
+  <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" id="search-backdrop"></div>
+  <div class="relative w-full max-w-3xl mx-4 animate-fade-in">
+    <!-- Search Input -->
+    <div class="bg-luxe-charcoal border border-white/10 flex items-center gap-3 px-5 py-4">
+      <span class="material-symbols-outlined text-luxe-gold">search</span>
+      <input class="flex-1 bg-transparent border-none focus:ring-0 text-base placeholder:text-luxe-gray font-light text-luxe-cream" id="search-input" placeholder="Cari resep, bahan, atau kategori..." type="text" autocomplete="off"/>
+      <button class="text-luxe-gray hover:text-white text-xs border border-white/10 px-2 py-1" id="close-search-btn">ESC</button>
+    </div>
+
+    <!-- Filters -->
+    <div class="bg-luxe-black border border-t-0 border-white/5 px-5 py-4">
+      <div class="space-y-4">
+        <!-- Kategori -->
+        <div>
+          <p class="text-[10px] uppercase tracking-[0.2em] text-luxe-gray mb-2">Kategori</p>
+          <div class="flex flex-wrap gap-2" id="filter-kategori"></div>
+        </div>
+        <!-- Kesulitan -->
+        <div>
+          <p class="text-[10px] uppercase tracking-[0.2em] text-luxe-gray mb-2">Kesulitan</p>
+          <div class="flex flex-wrap gap-2" id="filter-kesulitan"></div>
+        </div>
+        <!-- Waktu Makan -->
+        <div>
+          <p class="text-[10px] uppercase tracking-[0.2em] text-luxe-gray mb-2">Waktu Makan</p>
+          <div class="flex flex-wrap gap-2" id="filter-waktu"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search Results -->
+    <div class="bg-luxe-charcoal/95 border border-t-0 border-white/5 max-h-[50vh] overflow-y-auto custom-scrollbar" id="search-results">
+      <div class="p-5 text-center text-luxe-gray text-sm font-light italic" id="search-placeholder">Ketik untuk mencari resep...</div>
+    </div>
+  </div>
+</div>
+
+<script>
+function escapeHtml(text) {
+  const map = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" };
+  return text.replace(/[&<>"']/g, m => map[m]);
+}
+
+function renderMarkdown(markdown){
+  if(!markdown) return '';
+  try{
+    const html = marked.parse(markdown, { mangle: false, headerIds: false });
+    return DOMPurify.sanitize(html);
+  } catch(e){ return escapeHtml(markdown); }
+}
+
+function addMessage(role, content){
+  const body = document.getElementById('chat-body');
+  const innerContainer = body.querySelector('.max-w-4xl');
+
+  const wrapper = document.createElement('div');
+  wrapper.className = role === 'bot' ? 'flex justify-start gap-3 animate-fade-in' : 'flex justify-end gap-3 animate-fade-in';
+
+  if(role === 'bot') {
+    wrapper.innerHTML = `
+      <div class="w-8 h-8 rounded-full bg-luxe-gold/20 flex items-center justify-center shrink-0 border border-luxe-gold/30">
+        <span class="material-symbols-outlined text-sm text-luxe-gold">person_apron</span>
+      </div>
+      <div class="bg-white/5 p-4 rounded-r-xl rounded-bl-xl max-w-[85%]">
+        <div class="text-sm font-light leading-relaxed message-content"></div>
+      </div>`;
+    innerContainer.appendChild(wrapper);
+    body.scrollTo({ top: body.scrollHeight, behavior: 'smooth' });
+    typeMarkdown(wrapper.querySelector('.message-content'), content, body);
+  } else {
+    wrapper.innerHTML = `
+      <div class="bg-luxe-gold/10 p-4 rounded-l-xl rounded-br-xl max-w-[70%] border border-luxe-gold/20">
+        <p class="text-sm font-light text-luxe-cream">${escapeHtml(content)}</p>
+      </div>`;
+    innerContainer.appendChild(wrapper);
+    body.scrollTo({ top: body.scrollHeight, behavior: 'smooth' });
+  }
+}
+
+function typeMarkdown(el, markdown, scrollContainer) {
+  const fullHtml = renderMarkdown(markdown);
+  const chars = [...markdown];
+  let i = 0;
+  let buffer = '';
+
+  // Blinking cursor element
+  const cursor = document.createElement('span');
+  cursor.className = 'typing-cursor';
+  el.appendChild(cursor);
+
+  const interval = setInterval(() => {
+    if (i < chars.length) {
+      buffer += chars[i];
+      i++;
+      // Render markdown progressively every few chars for performance
+      el.innerHTML = renderMarkdown(buffer);
+      el.appendChild(cursor);
+      scrollContainer.scrollTo({ top: scrollContainer.scrollHeight, behavior: 'smooth' });
+    } else {
+      clearInterval(interval);
+      // Final render — clean, no cursor
+      el.innerHTML = fullHtml;
+    }
+  }, 18);
+}
+
+function showLoadingBubble() {
+  const body = document.getElementById('chat-body');
+  const innerContainer = body.querySelector('.max-w-4xl');
+  const loadingEl = document.createElement('div');
+  loadingEl.id = 'loading-bubble';
+  loadingEl.className = 'flex justify-start gap-3 animate-fade-in';
+  loadingEl.innerHTML = `
+    <div class="w-8 h-8 rounded-full bg-luxe-gold/20 flex items-center justify-center shrink-0 border border-luxe-gold/30">
+      <span class="material-symbols-outlined text-sm text-luxe-gold">person_apron</span>
+    </div>
+    <div class="bg-white/5 p-4 rounded-r-xl rounded-bl-xl">
+      <p class="text-sm text-luxe-gray font-light italic loading-dots">Sedang Mencari</p>
+    </div>`;
+  innerContainer.appendChild(loadingEl);
+  body.scrollTo({ top: body.scrollHeight, behavior: 'smooth' });
+}
+
+function removeLoadingBubble() {
+  document.getElementById('loading-bubble')?.remove();
+}
+
+let sessionId = 'luxe_session_' + Math.random().toString(36).substr(2, 9);
+
+async function sendMessage(message){
+  const welcome = document.getElementById('welcome-section');
+  const quick = document.getElementById('quick-actions-welcome');
+  if(welcome) welcome.style.display = 'none';
+  if(quick) quick.style.display = 'none';
+
+  addMessage('user', message);
+  document.getElementById('msg-input').value = '';
+
+  showLoadingBubble();
+
+  try {
+    const resp = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message, sessionId })
+    });
+    const data = await resp.json();
+    removeLoadingBubble();
+    addMessage('bot', data.error ? `**Error:** ${data.error}` : data.reply);
+  } catch(e) {
+    removeLoadingBubble();
+    addMessage('bot', `**Network error:** Gagal terhubung ke server.`);
+  }
+}
+
+document.getElementById('send-btn').onclick = () => {
+  const txt = document.getElementById('msg-input').value.trim();
+  if(txt) sendMessage(txt);
+};
+
+document.getElementById('msg-input').onkeypress = e => {
+  if(e.key === 'Enter') {
+    const txt = e.target.value.trim();
+    if(txt) sendMessage(txt);
+  }
+};
+
+function attachQuickBtnListeners() {
+  document.querySelectorAll('.quick-btn').forEach(btn => {
+    btn.onclick = () => {
+      const preset = btn.dataset.preset;
+      let msg = '';
+      if(preset === 'cari_resep') msg = 'Tampilkan resep populer Indonesia';
+      if(preset === 'lihat_kategori') msg = 'Tampilkan semua kategori resep yang tersedia';
+      if(preset === 'cari_berdasarkan_bahan') msg = 'Saya punya ayam, bawang, dan tomat. Bisa masak apa?';
+      if(preset === 'rekomendasi_menu') msg = 'Rekomendasikan menu makan siang hari ini';
+      if(preset === 'lihat_bahan') msg = 'Apa bahan-bahan untuk rendang?';
+      if(msg) sendMessage(msg);
+    };
+  });
+}
+attachQuickBtnListeners();
+
+// =============================================
+// SEARCH & FILTER FUNCTIONALITY
+// =============================================
+const searchOverlay = document.getElementById('search-overlay');
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+const searchPlaceholder = document.getElementById('search-placeholder');
+
+let activeFilters = { kategori: '', kesulitan: '', waktuMakan: '' };
+let filtersLoaded = false;
+
+function openSearch() {
+  searchOverlay.classList.remove('hidden');
+  searchInput.value = '';
+  searchInput.focus();
+  if (!filtersLoaded) loadFilters();
+  doSearch();
+}
+
+function closeSearch() {
+  searchOverlay.classList.add('hidden');
+  activeFilters = { kategori: '', kesulitan: '', waktuMakan: '' };
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+}
+
+document.getElementById('open-search-btn').onclick = openSearch;
+document.getElementById('close-search-btn').onclick = closeSearch;
+document.getElementById('search-backdrop').onclick = closeSearch;
+
+document.addEventListener('keydown', e => {
+  if (e.key === '/' && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) {
+    e.preventDefault();
+    openSearch();
+  }
+  if (e.key === 'Escape' && !searchOverlay.classList.contains('hidden')) closeSearch();
+});
+
+async function loadFilters() {
+  try {
+    const resp = await fetch('/api/resep/filters');
+    const data = await resp.json();
+    renderFilterChips('filter-kategori', data.kategori, 'kategori');
+    renderFilterChips('filter-kesulitan', data.kesulitan, 'kesulitan');
+    renderFilterChips('filter-waktu', data.waktuMakan, 'waktuMakan');
+    filtersLoaded = true;
+  } catch(e) { console.error('Filter load error', e); }
+}
+
+function renderFilterChips(containerId, items, filterKey) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = items.map(item =>
+    `<button class="filter-chip px-3 py-1 border border-white/10 text-[10px] text-luxe-gray uppercase tracking-widest cursor-pointer" data-key="${filterKey}" data-value="${item}">${escapeHtml(item)}</button>`
+  ).join('');
+  container.querySelectorAll('.filter-chip').forEach(chip => {
+    chip.onclick = () => {
+      const key = chip.dataset.key;
+      const val = chip.dataset.value;
+      if (activeFilters[key] === val) {
+        activeFilters[key] = '';
+        chip.classList.remove('active');
+      } else {
+        activeFilters[key] = val;
+        container.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+      }
+      doSearch();
+    };
+  });
+}
+
+let searchTimeout;
+searchInput.oninput = () => {
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(doSearch, 250);
+};
+
+async function doSearch() {
+  const q = (searchInput.value || '').trim();
+  const params = new URLSearchParams();
+  if (q) params.set('q', q);
+  if (activeFilters.kategori) params.set('kategori', activeFilters.kategori);
+  if (activeFilters.kesulitan) params.set('kesulitan', activeFilters.kesulitan);
+  if (activeFilters.waktuMakan) params.set('waktuMakan', activeFilters.waktuMakan);
+
+  try {
+    const resp = await fetch('/api/resep?' + params.toString());
+    const data = await resp.json();
+    renderSearchResults(data.resep, q);
+  } catch(e) {
+    searchResults.innerHTML = '<div class="p-5 text-center text-red-400 text-sm">Gagal memuat data.</div>';
+  }
+}
+
+function renderSearchResults(resep, query) {
+  if (resep.length === 0) {
+    searchResults.innerHTML = '<div class="p-8 text-center"><span class="material-symbols-outlined text-4xl text-luxe-gray/50 mb-2 block">search_off</span><p class="text-luxe-gray text-sm font-light">Tidak ada resep yang ditemukan.</p></div>';
+    return;
+  }
+  const difficultyIcon = { 'Mudah': 'sentiment_satisfied', 'Sedang': 'sentiment_neutral', 'Sulit': 'sentiment_stressed' };
+  searchResults.innerHTML = `<div class="p-3 border-b border-white/5"><span class="text-[10px] uppercase tracking-widest text-luxe-gray px-2">${resep.length} resep ditemukan</span></div>` +
+    resep.map(r => `
+      <div class="p-4 border-b border-white/5 hover:bg-white/5 cursor-pointer transition-colors search-result-item" data-nama="${escapeHtml(r.nama)}">
+        <div class="flex justify-between items-start">
+          <div class="flex-1">
+            <div class="flex items-center gap-3 mb-1">
+              <h4 class="font-serif text-base text-luxe-cream hover:text-luxe-gold transition-colors">${escapeHtml(r.nama)}</h4>
+            </div>
+            <p class="text-xs text-luxe-gray font-light line-clamp-1 mb-2">${escapeHtml(r.deskripsi)}</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="text-[9px] uppercase tracking-widest px-2 py-0.5 border border-luxe-gold/30 text-luxe-gold">${escapeHtml(r.kategori)}</span>
+              <span class="text-[9px] uppercase tracking-widest px-2 py-0.5 border border-white/10 text-luxe-gray flex items-center gap-1"><span class="material-symbols-outlined text-xs">${difficultyIcon[r.kesulitan] || 'help'}</span>${escapeHtml(r.kesulitan)}</span>
+              <span class="text-[9px] uppercase tracking-widest px-2 py-0.5 border border-white/10 text-luxe-gray flex items-center gap-1"><span class="material-symbols-outlined text-xs">schedule</span>${escapeHtml(r.waktuMasak)}</span>
+              <span class="text-[9px] uppercase tracking-widest px-2 py-0.5 border border-white/10 text-luxe-gray flex items-center gap-1"><span class="material-symbols-outlined text-xs">group</span>${r.porsi} porsi</span>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-luxe-gold/40 ml-3">arrow_forward</span>
+        </div>
+      </div>
+    `).join('');
+
+  searchResults.querySelectorAll('.search-result-item').forEach(item => {
+    item.onclick = () => {
+      const nama = item.dataset.nama;
+      closeSearch();
+      sendMessage('Tampilkan resep lengkap untuk ' + nama);
+    };
+  });
+}
+
+document.getElementById('reset-btn').onclick = async () => {
+  await fetch('/api/reset', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ sessionId })
+  });
+  const body = document.getElementById('chat-body');
+  body.querySelector('.max-w-4xl').innerHTML = `
+    <div class="flex flex-col items-center text-center space-y-8 animate-fade-in pt-8" id="welcome-section">
+      <div class="relative group">
+        <div class="absolute -inset-2 bg-luxe-gold/20 rounded-full blur-xl opacity-30 group-hover:opacity-60 transition duration-1000"></div>
+        <div class="relative w-20 h-20 border border-luxe-gold flex items-center justify-center rotate-45 bg-luxe-black">
+          <span class="material-symbols-outlined text-4xl text-luxe-gold -rotate-45">restaurant_menu</span>
+        </div>
+      </div>
+      <div class="space-y-3">
+        <h3 class="text-4xl lg:text-5xl font-serif text-luxe-gold mb-2">Selamat Datang</h3>
+        <p class="text-luxe-gray font-light italic tracking-wide max-w-lg mx-auto leading-relaxed">
+          Saya <span class="text-gold-gradient font-medium not-italic">Chef AI</span> Anda. Tanyakan resep masakan Indonesia, bahan-bahan, atau minta rekomendasi menu harian. Dapur siap melayani Anda.
+        </p>
+      </div>
+      <div class="h-[1px] w-32 bg-gradient-to-r from-transparent via-luxe-gold/50 to-transparent"></div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="quick-actions-welcome">
+      <div class="glass-card gold-foil-border p-6 cursor-pointer hover:border-luxe-gold/50 transition-all duration-500 group quick-btn" data-preset="cari_resep">
+        <div class="flex justify-between items-start mb-4">
+          <span class="text-[10px] uppercase tracking-widest text-luxe-gray">Cari Resep</span>
+          <span class="material-symbols-outlined text-luxe-gold text-lg opacity-40 group-hover:opacity-100 transition-opacity">auto_awesome</span>
+        </div>
+        <h4 class="font-serif text-lg group-hover:text-luxe-gold transition-colors">Resep Favorit Indonesia</h4>
+        <div class="h-[1px] w-full bg-gradient-to-r from-luxe-gold/50 to-transparent my-3"></div>
+        <p class="text-sm text-luxe-gray font-light">Temukan resep-resep masakan Indonesia yang paling dicari.</p>
+      </div>
+      <div class="glass-card gold-foil-border p-6 cursor-pointer hover:border-luxe-gold/50 transition-all duration-500 group quick-btn" data-preset="lihat_bahan">
+        <div class="flex justify-between items-start mb-4">
+          <span class="text-[10px] uppercase tracking-widest text-luxe-gray">Bahan & Langkah</span>
+          <span class="material-symbols-outlined text-luxe-gold text-lg opacity-40 group-hover:opacity-100 transition-opacity">shopping_basket</span>
+        </div>
+        <h4 class="font-serif text-lg group-hover:text-luxe-gold transition-colors">Lihat Bahan Resep</h4>
+        <div class="h-[1px] w-full bg-gradient-to-r from-luxe-gold/50 to-transparent my-3"></div>
+        <p class="text-sm text-luxe-gray font-light">Cek bahan-bahan dan langkah memasak untuk resep tertentu.</p>
+      </div>
+      <div class="glass-card gold-foil-border p-6 cursor-pointer hover:border-luxe-gold/50 transition-all duration-500 group quick-btn" data-preset="cari_berdasarkan_bahan">
+        <div class="flex justify-between items-start mb-4">
+          <span class="text-[10px] uppercase tracking-widest text-luxe-gray">Filter Bahan</span>
+          <span class="material-symbols-outlined text-luxe-gold text-lg opacity-40 group-hover:opacity-100 transition-opacity">shopping_cart</span>
+        </div>
+        <h4 class="font-serif text-lg group-hover:text-luxe-gold transition-colors">Cari Berdasarkan Bahan</h4>
+        <div class="h-[1px] w-full bg-gradient-to-r from-luxe-gold/50 to-transparent my-3"></div>
+        <p class="text-sm text-luxe-gray font-light">Punya bahan tertentu? Temukan resep yang bisa Anda masak.</p>
+      </div>
+      <div class="glass-card gold-foil-border p-6 cursor-pointer hover:border-luxe-gold/50 transition-all duration-500 group quick-btn" data-preset="lihat_kategori">
+        <div class="flex justify-between items-start mb-4">
+          <span class="text-[10px] uppercase tracking-widest text-luxe-gray">Kategori</span>
+          <span class="material-symbols-outlined text-luxe-gold text-lg opacity-40 group-hover:opacity-100 transition-opacity">menu_book</span>
+        </div>
+        <h4 class="font-serif text-lg group-hover:text-luxe-gold transition-colors">Jelajahi Kategori Masakan</h4>
+        <div class="h-[1px] w-full bg-gradient-to-r from-luxe-gold/50 to-transparent my-3"></div>
+        <p class="text-sm text-luxe-gray font-light">Telusuri berbagai kategori dari rendang hingga soto nusantara.</p>
+      </div>
+      <div class="glass-card gold-foil-border p-6 cursor-pointer hover:border-luxe-gold/50 transition-all duration-500 group quick-btn" data-preset="rekomendasi_menu">
+        <div class="flex justify-between items-start mb-4">
+          <span class="text-[10px] uppercase tracking-widest text-luxe-gray">Rekomendasi</span>
+          <span class="material-symbols-outlined text-luxe-gold text-lg opacity-40 group-hover:opacity-100 transition-opacity">recommend</span>
+        </div>
+        <h4 class="font-serif text-lg group-hover:text-luxe-gold transition-colors">Menu Pilihan Hari Ini</h4>
+        <div class="h-[1px] w-full bg-gradient-to-r from-luxe-gold/50 to-transparent my-3"></div>
+        <p class="text-sm text-luxe-gray font-light">Rekomendasi menu spesial yang disesuaikan untuk Anda.</p>
+      </div>
+    </div>
+  `;
+  attachQuickBtnListeners();
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,466 @@
+[
+  {
+    "id": "R001",
+    "nama": "Nasi Goreng Spesial",
+    "kategori": "Nasi",
+    "deskripsi": "Nasi goreng khas Indonesia dengan telur, kecap manis, dan bumbu rempah.",
+    "waktuMasak": "20 menit",
+    "porsi": 2,
+    "kesulitan": "Mudah",
+    "waktuMakan": ["sarapan", "makan siang", "makan malam"],
+    "bahan": [
+      "2 piring nasi putih dingin",
+      "3 butir telur",
+      "5 siung bawang merah",
+      "3 siung bawang putih",
+      "3 buah cabai merah",
+      "2 sdm kecap manis",
+      "1 sdm minyak goreng",
+      "Garam secukupnya",
+      "Merica secukupnya"
+    ],
+    "langkah": [
+      "Iris tipis bawang merah, bawang putih, dan cabai.",
+      "Panaskan minyak, tumis bawang merah dan bawang putih hingga harum.",
+      "Masukkan cabai, aduk sebentar.",
+      "Tambahkan telur, orak-arik hingga matang.",
+      "Masukkan nasi putih, aduk rata.",
+      "Tambahkan kecap manis, garam, dan merica.",
+      "Aduk hingga semua bumbu tercampur rata.",
+      "Sajikan dengan taburan bawang goreng dan irisan mentimun."
+    ],
+    "tags": ["nasi", "telur", "bawang", "kecap", "cabai"]
+  },
+  {
+    "id": "R002",
+    "nama": "Rendang Daging Sapi",
+    "kategori": "Lauk Pauk",
+    "deskripsi": "Rendang khas Padang yang kaya rempah dengan daging sapi empuk.",
+    "waktuMasak": "3 jam",
+    "porsi": 6,
+    "kesulitan": "Sulit",
+    "waktuMakan": ["makan siang", "makan malam"],
+    "bahan": [
+      "1 kg daging sapi has dalam, potong dadu",
+      "400 ml santan kental",
+      "600 ml santan encer",
+      "10 siung bawang merah",
+      "6 siung bawang putih",
+      "10 buah cabai merah keriting",
+      "5 cm jahe",
+      "5 cm lengkuas",
+      "3 batang serai",
+      "5 lembar daun jeruk",
+      "2 lembar daun kunyit",
+      "1 sdt garam",
+      "1 sdt gula merah"
+    ],
+    "langkah": [
+      "Haluskan bawang merah, bawang putih, cabai, jahe, dan lengkuas.",
+      "Tumis bumbu halus bersama serai, daun jeruk, dan daun kunyit hingga harum.",
+      "Masukkan daging sapi, aduk hingga berubah warna.",
+      "Tuang santan encer, masak dengan api sedang.",
+      "Setelah daging empuk, tambahkan santan kental.",
+      "Masak terus sambil diaduk hingga santan menyusut dan bumbu meresap.",
+      "Rendang siap jika sudah kering dan berwarna cokelat kehitaman."
+    ],
+    "tags": ["daging", "sapi", "santan", "rempah", "cabai", "bawang"]
+  },
+  {
+    "id": "R003",
+    "nama": "Soto Ayam",
+    "kategori": "Sup & Soto",
+    "deskripsi": "Soto ayam berkuah kuning yang segar dan hangat.",
+    "waktuMasak": "45 menit",
+    "porsi": 4,
+    "kesulitan": "Sedang",
+    "waktuMakan": ["sarapan", "makan siang"],
+    "bahan": [
+      "500 gram ayam (paha/dada)",
+      "2 liter air",
+      "5 siung bawang merah",
+      "3 siung bawang putih",
+      "3 cm kunyit",
+      "2 cm jahe",
+      "2 batang serai",
+      "3 lembar daun salam",
+      "100 gram soun, rendam air panas",
+      "2 butir telur rebus",
+      "Bawang goreng secukupnya",
+      "Jeruk nipis",
+      "Garam dan merica secukupnya"
+    ],
+    "langkah": [
+      "Rebus ayam hingga matang, angkat dan suwir-suwir dagingnya.",
+      "Haluskan bawang merah, bawang putih, kunyit, dan jahe.",
+      "Tumis bumbu halus bersama serai dan daun salam hingga harum.",
+      "Masukkan tumisan ke dalam kaldu ayam, didihkan.",
+      "Tambahkan garam dan merica secukupnya.",
+      "Siapkan mangkuk: soun, ayam suwir, telur rebus.",
+      "Tuang kuah soto, taburi bawang goreng dan perasan jeruk nipis."
+    ],
+    "tags": ["ayam", "kunyit", "soto", "bawang", "telur"]
+  },
+  {
+    "id": "R004",
+    "nama": "Gado-Gado Jakarta",
+    "kategori": "Sayuran",
+    "deskripsi": "Salad sayuran Indonesia dengan saus kacang yang gurih.",
+    "waktuMasak": "30 menit",
+    "porsi": 3,
+    "kesulitan": "Mudah",
+    "waktuMakan": ["makan siang"],
+    "bahan": [
+      "200 gram kacang tanah goreng",
+      "5 buah cabai rawit",
+      "3 siung bawang putih",
+      "2 sdm gula merah",
+      "1 sdm air asam jawa",
+      "150 gram tahu goreng",
+      "150 gram tempe goreng",
+      "100 gram tauge, rebus",
+      "100 gram kacang panjang, rebus",
+      "2 buah kentang rebus",
+      "3 butir telur rebus",
+      "Lontong secukupnya",
+      "Kerupuk"
+    ],
+    "langkah": [
+      "Buat saus kacang: haluskan kacang tanah, cabai, bawang putih.",
+      "Tambahkan gula merah dan air asam jawa, aduk rata.",
+      "Encerkan dengan air matang hingga kekentalan sesuai selera.",
+      "Tata sayuran rebus, tahu, tempe, kentang, dan telur di piring.",
+      "Siram dengan saus kacang.",
+      "Sajikan dengan lontong dan kerupuk."
+    ],
+    "tags": ["sayur", "kacang", "tahu", "tempe", "telur"]
+  },
+  {
+    "id": "R005",
+    "nama": "Ayam Goreng Kremes",
+    "kategori": "Lauk Pauk",
+    "deskripsi": "Ayam goreng renyah dengan kremesan gurih khas Jawa.",
+    "waktuMasak": "60 menit",
+    "porsi": 4,
+    "kesulitan": "Sedang",
+    "waktuMakan": ["makan siang", "makan malam"],
+    "bahan": [
+      "1 ekor ayam, potong 8 bagian",
+      "5 siung bawang putih",
+      "3 cm kunyit",
+      "2 cm jahe",
+      "1 sdt ketumbar",
+      "1 liter air",
+      "Garam secukupnya",
+      "Minyak goreng secukupnya",
+      "100 gram tepung beras (untuk kremes)",
+      "Sisa kaldu ayam"
+    ],
+    "langkah": [
+      "Haluskan bawang putih, kunyit, jahe, dan ketumbar.",
+      "Rebus ayam dengan bumbu halus dan garam hingga empuk.",
+      "Angkat ayam, tiriskan.",
+      "Goreng ayam dalam minyak panas hingga kecokelatan.",
+      "Untuk kremes: campurkan tepung beras dengan sisa kaldu.",
+      "Tuang adonan kremesan ke minyak panas secara perlahan.",
+      "Goreng hingga garing, tiriskan.",
+      "Sajikan ayam goreng dengan taburan kremesan."
+    ],
+    "tags": ["ayam", "goreng", "tepung", "bawang", "kunyit"]
+  },
+  {
+    "id": "R006",
+    "nama": "Sayur Lodeh",
+    "kategori": "Sayuran",
+    "deskripsi": "Sayur berkuah santan dengan berbagai macam sayuran.",
+    "waktuMasak": "35 menit",
+    "porsi": 4,
+    "kesulitan": "Mudah",
+    "waktuMakan": ["makan siang", "makan malam"],
+    "bahan": [
+      "400 ml santan",
+      "200 gram labu siam, potong",
+      "100 gram kacang panjang, potong",
+      "2 lembar daun salam",
+      "2 cm lengkuas, memarkan",
+      "5 siung bawang merah",
+      "3 siung bawang putih",
+      "3 buah cabai merah",
+      "1 sdt garam",
+      "1/2 sdt gula"
+    ],
+    "langkah": [
+      "Haluskan bawang merah, bawang putih, dan cabai.",
+      "Tumis bumbu halus bersama daun salam dan lengkuas.",
+      "Masukkan labu siam dan kacang panjang.",
+      "Tuang santan, masak dengan api kecil.",
+      "Tambahkan garam dan gula, aduk rata.",
+      "Masak hingga sayuran empuk dan kuah mengental."
+    ],
+    "tags": ["sayur", "santan", "labu", "kacang", "bawang"]
+  },
+  {
+    "id": "R007",
+    "nama": "Nasi Uduk",
+    "kategori": "Nasi",
+    "deskripsi": "Nasi gurih yang dimasak dengan santan dan rempah-rempah.",
+    "waktuMasak": "30 menit",
+    "porsi": 4,
+    "kesulitan": "Mudah",
+    "waktuMakan": ["sarapan", "makan siang"],
+    "bahan": [
+      "500 gram beras, cuci bersih",
+      "400 ml santan",
+      "2 lembar daun salam",
+      "2 batang serai, memarkan",
+      "1 cm lengkuas",
+      "1 sdt garam"
+    ],
+    "langkah": [
+      "Cuci beras hingga bersih, tiriskan.",
+      "Campurkan beras dengan santan, daun salam, serai, dan lengkuas.",
+      "Masak di rice cooker seperti biasa.",
+      "Setelah matang, aduk rata dan diamkan 10 menit.",
+      "Sajikan dengan lauk pelengkap (ayam goreng, tempe orek, sambal)."
+    ],
+    "tags": ["nasi", "santan", "serai", "daun salam"]
+  },
+  {
+    "id": "R008",
+    "nama": "Sop Buntut",
+    "kategori": "Sup & Soto",
+    "deskripsi": "Sup buntut sapi yang kaya rasa dengan sayuran segar.",
+    "waktuMasak": "2 jam",
+    "porsi": 4,
+    "kesulitan": "Sedang",
+    "waktuMakan": ["makan siang", "makan malam"],
+    "bahan": [
+      "1 kg buntut sapi, potong per ruas",
+      "2 liter air",
+      "2 buah wortel, potong",
+      "2 buah kentang, potong",
+      "1 batang daun bawang",
+      "1 batang seledri",
+      "5 siung bawang merah",
+      "3 siung bawang putih",
+      "1/2 sdt pala bubuk",
+      "3 buah cengkeh",
+      "1 sdt merica",
+      "Garam secukupnya",
+      "Bawang goreng secukupnya"
+    ],
+    "langkah": [
+      "Rebus buntut sapi hingga empuk (bisa pakai presto).",
+      "Haluskan bawang merah, bawang putih, pala.",
+      "Tumis bumbu halus hingga harum.",
+      "Masukkan tumisan ke rebusan buntut.",
+      "Tambahkan wortel dan kentang, masak hingga empuk.",
+      "Bumbui dengan garam, merica, dan cengkeh.",
+      "Sajikan dengan taburan bawang goreng, daun bawang, dan seledri."
+    ],
+    "tags": ["daging", "sapi", "buntut", "wortel", "kentang", "bawang"]
+  },
+  {
+    "id": "R009",
+    "nama": "Sambal Terasi",
+    "kategori": "Sambal",
+    "deskripsi": "Sambal pedas dengan terasi yang cocok untuk segala lauk.",
+    "waktuMasak": "10 menit",
+    "porsi": 5,
+    "kesulitan": "Mudah",
+    "waktuMakan": ["sarapan", "makan siang", "makan malam"],
+    "bahan": [
+      "15 buah cabai rawit merah",
+      "5 buah cabai merah besar",
+      "3 siung bawang merah",
+      "2 siung bawang putih",
+      "1 sdt terasi bakar",
+      "1 buah tomat",
+      "1 sdm gula merah",
+      "Garam secukupnya",
+      "Jeruk limau"
+    ],
+    "langkah": [
+      "Goreng cabai rawit, cabai besar, bawang merah, bawang putih, dan tomat.",
+      "Angkat, ulek bersama terasi bakar.",
+      "Tambahkan gula merah dan garam.",
+      "Ulek hingga halus atau sesuai selera.",
+      "Tambahkan perasan jeruk limau."
+    ],
+    "tags": ["cabai", "sambal", "terasi", "bawang", "tomat"]
+  },
+  {
+    "id": "R010",
+    "nama": "Es Cendol",
+    "kategori": "Dessert",
+    "deskripsi": "Minuman dingin tradisional dengan cendol, santan, dan gula merah.",
+    "waktuMasak": "30 menit",
+    "porsi": 4,
+    "kesulitan": "Sedang",
+    "waktuMakan": ["makan siang"],
+    "bahan": [
+      "100 gram tepung hunkwe",
+      "50 gram tepung beras",
+      "500 ml air",
+      "1 sdt pasta pandan",
+      "200 ml santan kental",
+      "150 gram gula merah, sisir",
+      "100 ml air untuk gula merah",
+      "Es batu secukupnya"
+    ],
+    "langkah": [
+      "Campurkan tepung hunkwe, tepung beras, air, dan pasta pandan.",
+      "Masak sambil diaduk hingga mengental.",
+      "Cetak cendol dengan saringan ke dalam air es.",
+      "Buat sirup gula merah: rebus gula merah dan air hingga larut.",
+      "Siapkan gelas: cendol, es batu.",
+      "Siram dengan santan kental dan sirup gula merah."
+    ],
+    "tags": ["cendol", "santan", "gula merah", "pandan", "dessert"]
+  },
+  {
+    "id": "R011",
+    "nama": "Tempe Orek",
+    "kategori": "Lauk Pauk",
+    "deskripsi": "Tempe yang diiris tipis lalu dimasak dengan kecap manis dan cabai.",
+    "waktuMasak": "20 menit",
+    "porsi": 3,
+    "kesulitan": "Mudah",
+    "waktuMakan": ["makan siang", "makan malam"],
+    "bahan": [
+      "300 gram tempe, iris tipis",
+      "5 siung bawang merah",
+      "3 siung bawang putih",
+      "5 buah cabai rawit",
+      "3 sdm kecap manis",
+      "1 sdm gula merah",
+      "Garam secukupnya",
+      "Minyak goreng"
+    ],
+    "langkah": [
+      "Goreng tempe setengah matang, sisihkan.",
+      "Iris bawang merah, bawang putih, dan cabai rawit.",
+      "Tumis bawang dan cabai hingga harum.",
+      "Masukkan tempe goreng, aduk rata.",
+      "Tambahkan kecap manis dan gula merah.",
+      "Masak hingga bumbu meresap dan sedikit kering."
+    ],
+    "tags": ["tempe", "kecap", "bawang", "cabai"]
+  },
+  {
+    "id": "R012",
+    "nama": "Bubur Ayam",
+    "kategori": "Bubur",
+    "deskripsi": "Bubur nasi lembut dengan topping ayam suwir, cakwe, dan kecap.",
+    "waktuMasak": "40 menit",
+    "porsi": 3,
+    "kesulitan": "Mudah",
+    "waktuMakan": ["sarapan"],
+    "bahan": [
+      "200 gram beras",
+      "1.5 liter air",
+      "250 gram dada ayam",
+      "3 siung bawang putih",
+      "1 cm jahe",
+      "1 batang daun bawang",
+      "Kecap manis secukupnya",
+      "Kerupuk",
+      "Bawang goreng",
+      "Garam secukupnya"
+    ],
+    "langkah": [
+      "Masak beras dengan air hingga menjadi bubur lembut.",
+      "Rebus ayam dengan bawang putih dan jahe hingga matang.",
+      "Suwir-suwir daging ayam.",
+      "Sajikan bubur dalam mangkuk.",
+      "Beri topping ayam suwir, daun bawang, bawang goreng.",
+      "Tambahkan kecap manis dan kerupuk."
+    ],
+    "tags": ["beras", "ayam", "bubur", "bawang", "jahe"]
+  },
+  {
+    "id": "R013",
+    "nama": "Sambal Matah",
+    "kategori": "Sambal",
+    "deskripsi": "Sambal khas Bali dengan bawang merah dan serai mentah.",
+    "waktuMasak": "10 menit",
+    "porsi": 4,
+    "kesulitan": "Mudah",
+    "waktuMakan": ["makan siang", "makan malam"],
+    "bahan": [
+      "10 siung bawang merah, iris tipis",
+      "5 buah cabai rawit, iris halus",
+      "2 batang serai, iris tipis",
+      "3 lembar daun jeruk, buang tulang, iris halus",
+      "1 sdt terasi goreng",
+      "2 sdm minyak kelapa panas",
+      "Garam secukupnya",
+      "Perasan jeruk limau"
+    ],
+    "langkah": [
+      "Iris tipis bawang merah, cabai rawit, serai, dan daun jeruk.",
+      "Campurkan semua irisan dalam mangkuk.",
+      "Tambahkan terasi goreng yang sudah diremahkan.",
+      "Siram dengan minyak kelapa panas.",
+      "Tambahkan garam dan perasan jeruk limau.",
+      "Aduk rata dan sajikan."
+    ],
+    "tags": ["sambal", "bawang", "serai", "cabai", "terasi"]
+  },
+  {
+    "id": "R014",
+    "nama": "Pisang Goreng Crispy",
+    "kategori": "Dessert",
+    "deskripsi": "Pisang goreng renyah dengan lapisan tepung crispy.",
+    "waktuMasak": "15 menit",
+    "porsi": 4,
+    "kesulitan": "Mudah",
+    "waktuMakan": ["sarapan", "makan siang"],
+    "bahan": [
+      "6 buah pisang raja/kepok, belah dua",
+      "100 gram tepung terigu",
+      "50 gram tepung beras",
+      "50 gram tepung maizena",
+      "200 ml air es",
+      "1/4 sdt garam",
+      "1 sdm gula pasir",
+      "Minyak goreng secukupnya"
+    ],
+    "langkah": [
+      "Campurkan tepung terigu, tepung beras, tepung maizena, garam, dan gula.",
+      "Tuang air es sedikit demi sedikit sambil diaduk.",
+      "Aduk hingga adonan tidak terlalu kental.",
+      "Celupkan pisang ke dalam adonan tepung.",
+      "Goreng dalam minyak panas dengan api sedang.",
+      "Goreng hingga kecokelatan dan renyah.",
+      "Angkat, tiriskan, sajikan."
+    ],
+    "tags": ["pisang", "tepung", "goreng", "dessert"]
+  },
+  {
+    "id": "R015",
+    "nama": "Pecel Lele",
+    "kategori": "Lauk Pauk",
+    "deskripsi": "Lele goreng garing dengan sambal terasi dan lalapan segar.",
+    "waktuMasak": "25 menit",
+    "porsi": 2,
+    "kesulitan": "Mudah",
+    "waktuMakan": ["makan siang", "makan malam"],
+    "bahan": [
+      "4 ekor lele segar, bersihkan",
+      "1 sdt garam",
+      "1/2 sdt kunyit bubuk",
+      "Minyak goreng secukupnya",
+      "Lalapan (timun, kemangi, kol)",
+      "Sambal terasi"
+    ],
+    "langkah": [
+      "Lumuri lele dengan garam dan kunyit bubuk, diamkan 15 menit.",
+      "Panaskan minyak goreng.",
+      "Goreng lele hingga kecokelatan dan garing.",
+      "Angkat dan tiriskan.",
+      "Sajikan dengan nasi putih, sambal terasi, dan lalapan."
+    ],
+    "tags": ["lele", "ikan", "goreng", "sambal", "lalapan"]
+  }
+]
