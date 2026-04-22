@@ -1,4 +1,5 @@
-<h1>Tugas Kelompok 4 <br>Pencari-Resep-Makan</h1>
+<h1>Tugas Kelompok 4 <br></h1>
+<h2>Pencari-Resep-Makan</h2>
 <h3>Anggota Kelompok:</h3>
 <h5>Baday Ekel Perimsa Gloria Tarigan,
           Muhammad Falih FajrulHaq Natadipura,
