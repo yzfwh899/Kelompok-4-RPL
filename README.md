@@ -4,7 +4,8 @@
 <h5>Baday Ekel Perimsa Gloria Tarigan,
           Muhammad Falih FajrulHaq Natadipura,
           Yoza Alshifwah,
-          Aulia Indriyani</h5>
+          Aulia Indriyani,
+          Stepandi.</h5>
 # 🍽️ ResepMenu Luxe — Asisten Virtual Resep Masakan Indonesia
 
 > **Digital Recipe Concierge** — Chatbot berbasis AI yang membantu Anda menemukan dan membuat resep masakan Indonesia dengan mudah.
